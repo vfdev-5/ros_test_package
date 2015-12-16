@@ -99,7 +99,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Declare things to be passed to dependent projects
 ## INCLUDE_DIRS: uncomment this if you package contains header files
 ## LIBRARIES: libraries you create in this project that dependent projects also need
-## CATKIN_DEPENDS: catkin_packages dependent projects also need
+## CATKIN_DEPENDS: ${PROJECT_NAME}catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
@@ -141,7 +141,11 @@ target_link_libraries(talker_node
 )
 
 ## Declare a C++ executable
-add_executable(listener_node src/listener.cpp)
+
+# fetch header files
+file(GLOB_RECURSE INC_FILES "include/${PROJECT_NAME}/*.h")
+
+add_executable(listener_node src/listener.cpp ${INC_FILES})
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 add_dependencies(listener_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
@@ -174,7 +178,7 @@ target_link_libraries(listener_node
 # )
 
 ## Mark cpp header files for installation
-# install(DIRECTORY include/${PROJECT_NAME}/
+# install(DIRECTORY include/${PROJECT_NAME}/, nodeImage;
 #   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 #   FILES_MATCHING PATTERN "*.h"
 #   PATTERN ".svn" EXCLUDE

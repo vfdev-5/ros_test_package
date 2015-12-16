@@ -3,12 +3,12 @@
 #include <sstream>
 
 // Ros
-#include "ros/ros.h"
-#include "std_msgs/String.h"
+#include <ros/ros.h>
+#include <std_msgs/String.h>
 //#include "sensor_msgs/Image.h"
 
 // cv_camera
-#include "cv_camera/capture.h"
+//#include "cv_camera/capture.h"
 
 
 const int32_t PUBLISHER_BUFFER_SIZE = 1;
@@ -22,15 +22,14 @@ int main(int argc, char** argv)
 
 
 	// Create a node with video 	
-	ros::NodeHandle private_node("~");
-	std::string frame_id("camera");
-	boost::shared_ptr<cv_camera::Capture> camera;
-	camera.reset(new cv_camera::Capture(private_node,
-										"image_raw",
-			                            PUBLISHER_BUFFER_SIZE,
-						                frame_id));
-	
-	camera->openFile(FILE_PATH);
+//	ros::NodeHandle private_node("~");
+//	std::string frame_id("camera");
+//	boost::shared_ptr<cv_camera::Capture> camera;
+//	camera.reset(new cv_camera::Capture(private_node,
+//										"image_raw",
+//			                            PUBLISHER_BUFFER_SIZE,
+//						                frame_id));
+//	camera->openFile(FILE_PATH);
 	
 	// Create a node 
 	ros::NodeHandle n;
@@ -57,10 +56,10 @@ int main(int argc, char** argv)
 		chatter_pub.publish(msg);
 		
 		// caputure an publish image
-		if (camera->capture())
-		{
-			camera->publish();
-		}
+//		if (camera->capture())
+//		{
+//			camera->publish();
+//		}
 				
 		ros::spinOnce();
 		loop_rate.sleep();
