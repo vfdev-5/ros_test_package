@@ -10,6 +10,7 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   std_msgs
   cv_camera
+  ar_track_alvar
 )
 
 ## System dependencies are found with CMake's conventions
@@ -154,6 +155,18 @@ add_dependencies(listener_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPO
 target_link_libraries(listener_node
    ${catkin_LIBRARIES}
 )
+
+## Declare a C++ executable
+add_executable(marker_detector_node src/marker_detector_node.cpp)
+## Add cmake target dependencies of the executable
+## same as for the library above
+add_dependencies(marker_detector_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+## Specify libraries to link a library or executable target against
+target_link_libraries(marker_detector_node
+   ${catkin_LIBRARIES}
+)
+
 
 
 #############
